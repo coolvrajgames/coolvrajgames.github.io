@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cool Vraj Games</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#02020a;
+color:white;
+overflow-x:hidden;
+}
+
+/* animated galaxy gradient */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:linear-gradient(120deg,#000000,#0f0c29,#302b63,#000000,#12002a);
+background-size:600% 600%;
+animation:bgMove 25s ease infinite;
+z-index:-4;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* infinite starfield */
+.stars{
+position:fixed;
+inset:0;
+background-image:radial-gradient(white 1px, transparent 1px);
+background-size:30px 30px;
+opacity:.2;
+animation:starsMove 120s linear infinite;
+z-index:-3;
+}
+
+@keyframes starsMove{
+0%{background-position:0 0}
+100%{background-position:0 -2000px}
+}
+
+/* glow blobs */
+.glow1,.glow2{
+position:fixed;
+width:600px;
+height:600px;
+filter:blur(120px);
+z-index:-2;
+}
+
+.glow1{
+background:#6b5cff;
+top:-200px;
+left:-200px;
+animation:float1 20s ease-in-out infinite;
+}
+
+.glow2{
+background:#00eaff;
+bottom:-200px;
+right:-200px;
+animation:float2 22s ease-in-out infinite;
+}
+
+@keyframes float1{
+0%,100%{transform:translate(0,0)}
+50%{transform:translate(200px,120px)}
+}
+
+@keyframes float2{
+0%,100%{transform:translate(0,0)}
+50%{transform:translate(-200px,-120px)}
+}
+
+header{
+text-align:center;
+padding:90px 20px 50px;
+}
+
+.title{
+font-family:'Orbitron',sans-serif;
+font-size:64px;
+font-weight:900;
+letter-spacing:5px;
+background:linear-gradient(90deg,#00eaff,#7a6bff,#ff2fd1);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 45px rgba(0,255,255,.6);
+}
+
+.subtitle{
+margin-top:12px;
+opacity:.8;
+font-size:17px;
+}
+
+.controls{
+margin-top:30px;
+display:flex;
+gap:14px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.controls input{
+padding:12px 18px;
+border-radius:25px;
+border:none;
+width:240px;
+background:rgba(255,255,255,.1);
+color:white;
+outline:none;
+}
+
+.controls button{
+padding:10px 16px;
+border-radius:20px;
+border:none;
+background:linear-gradient(90deg,#00eaff,#7a6bff);
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+.container{
+width:92%;
+max-width:1550px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+
+gap:40px;
+padding-bottom:100px;
+}
+
+.card{
+position:relative;
+border-radius:22px;
+overflow:hidden;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.08);
+transition:.35s;
+transform-style:preserve-3d;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-14px) scale(1.05) rotateX(5deg) rotateY(-5deg);
+box-shadow:0 40px 90px rgba(0,0,0,.95);
+}
+
+.card img{
+width:100%;
+height:190px;
+object-fit:cover;
+}
+
+.card-title{
+font-family:'Orbitron',sans-serif;
+text-align:center;
+padding:18px;
+letter-spacing:1px;
+font-size:19px;
+}
+
+.play-overlay{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+font-weight:800;
+background:rgba(0,0,0,.55);
+opacity:0;
+transition:.3s;
+}
+
+.card:hover .play-overlay{
+opacity:1;
+}
+
+footer{
+text-align:center;
+padding:40px;
+opacity:.6;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<header>
+<div class="title">COOL VRAJ GAMES</div>
+<div class="subtitle">Insane Mode Game Hub</div>
+
+<div class="controls">
+<input type="text" placeholder="Search games..." id="searchBox">
+<button onclick="toggleFullscreen()">Fullscreen</button>
+</div>
+
+</header>
+
+<div class="container" id="gameContainer">
+
+<div class="card" data-name="vraj clicker" onclick="openGame('https://vrajclicker.netlify.app')">
+<img src="https://image.thum.io/get/width/900/https://vrajclicker.netlify.app">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">Vraj Clicker</div>
+</div>
+
+<div class="card" data-name="vraj clicker 2" onclick="openGame('https://vrajclicker2.github.io')">
+<img src="https://image.thum.io/get/width/900/https://vrajclicker2.github.io">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">Vraj Clicker 2</div>
+</div>
+
+<div class="card" data-name="fniv" onclick="openGame('https://fniv.github.io')">
+<img src="https://image.thum.io/get/width/900/https://fniv.github.io">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">FNIV</div>
+</div>
+
+<div class="card" data-name="vrajtris" onclick="openGame('https://vrajtris.netlify.app')">
+<img src="https://image.thum.io/get/width/900/https://vrajtris.netlify.app">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">VrajTris</div>
+</div>
+
+<div class="card" data-name="vrajerria" onclick="openGame('https://vrajerria.netlify.app')">
+<img src="https://image.thum.io/get/width/900/https://vrajerria.netlify.app">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">Vrajerria</div>
+</div>
+
+<div class="card" data-name="vruno" onclick="openGame('https://vruno.netlify.app')">
+<img src="https://image.thum.io/get/width/900/https://vruno.netlify.app">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">Vruno</div>
+</div>
+
+<div class="card" data-name="evil vraj" onclick="openGame('https://evilvraj.netlify.app')">
+<img src="https://image.thum.io/get/width/900/https://evilvraj.netlify.app">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">Evil Vraj</div>
+</div>
+
+</div>
+
+<footer>
+⚡ Cool Vraj Games Insane Portal
+</footer>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2023/03/28/audio_2b2e9d9b1c.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function openGame(url){
+window.open(url,'_blank')
+}
+
+const searchBox=document.getElementById('searchBox')
+searchBox.addEventListener('input',function(){
+let filter=this.value.toLowerCase()
+let cards=document.querySelectorAll('.card')
+
+cards.forEach(card=>{
+let name=card.dataset.name
+if(name.includes(filter)){
+card.style.display='block'
+}else{
+card.style.display='none'
+}
+})
+})
+
+function toggleFullscreen(){
+if(!document.fullscreenElement){
+document.documentElement.requestFullscreen()
+}else{
+document.exitFullscreen()
+}
+}
+
+</script>
+
+</body>
+</html>
