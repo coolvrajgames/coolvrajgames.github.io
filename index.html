@@ -197,6 +197,29 @@ opacity:.6;
 border-top:1px solid rgba(255,255,255,.08);
 }
 
+/* New Game Badge */
+.new-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(90deg, #ff0844, #ff4b2b);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 5px 12px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(255, 8, 68, 0.7);
+    animation: pulseBadge 1s infinite alternate ease-in-out;
+    z-index: 5;
+    pointer-events: none;
+}
+
+@keyframes pulseBadge {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2) rotate(3deg); }
+}
+
 </style>
 </head>
 
@@ -218,6 +241,13 @@ border-top:1px solid rgba(255,255,255,.08);
 </header>
 
 <div class="container" id="gameContainer">
+
+<div class="card" data-name="among vraj" onclick="openGame('https://amongvraj.netlify.app')">
+<div class="new-badge">NEW!</div>
+<img src="amongvraj.png" alt="Among Vraj">
+<div class="play-overlay">▶ PLAY</div>
+<div class="card-title">Among Vraj</div>
+</div>
 
 <div class="card" data-name="vraj clicker" onclick="openGame('https://vrajclicker.netlify.app')">
 <img src="vrajclicker.png" alt="Vraj Clicker">
